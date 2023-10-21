@@ -1,6 +1,24 @@
-[gd_scene load_steps=6 format=3 uid="uid://c42s8exqd6ucl"]
+[gd_scene load_steps=9 format=3 uid="uid://c42s8exqd6ucl"]
 
 [ext_resource type="Script" path="res://scenes/ui/end_screen.gd" id="1_hi3en"]
+[ext_resource type="AudioStream" uid="uid://b1agomi05mwx6" path="res://assets/audio/jingles_victory.ogg" id="2_fio4e"]
+[ext_resource type="PackedScene" uid="uid://dcnrbddo7he3k" path="res://scenes/ui/sound_button.tscn" id="2_tu6sr"]
+[ext_resource type="AudioStream" uid="uid://darepxia5fl0g" path="res://assets/audio/jingles_defeat.ogg" id="3_xvr4y"]
+
+[sub_resource type="Animation" id="Animation_bg2hi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_f0vcm"]
 resource_name = "in"
@@ -17,21 +35,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_bg2hi"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_bacqc"]
@@ -67,6 +70,16 @@ autoplay = "in"
 libraries = {
 "": SubResource("AnimationLibrary_82qrb")
 }
+
+[node name="VictoryStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_fio4e")
+volume_db = -5.0
+bus = &"sfx"
+
+[node name="DefeatStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_xvr4y")
+volume_db = -5.0
+bus = &"sfx"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -129,12 +142,12 @@ horizontal_alignment = 1
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="RestartButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="RestartButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("2_tu6sr")]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Restart"
 
-[node name="QuitButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="QuitButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("2_tu6sr")]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Quit"

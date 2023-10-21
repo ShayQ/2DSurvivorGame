@@ -120,7 +120,7 @@ _data = {
 "walk": SubResource("Animation_2n26i")
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wfy7b"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_560y8"]
 resource_local_to_scene = true
 shader = ExtResource("6_55bua")
 shader_parameter/lerp_percent = 0.0
@@ -150,19 +150,19 @@ max_speed = 60
 acceleration = 20.0
 
 [node name="VialDropComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_1kfub")]
+drop_percent = 0.6
 health_component = NodePath("../HealthComponent")
 
 [node name="HitFlashComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("5_yonub")]
 health_component = NodePath("../HealthComponent")
 sprite = NodePath("../Visuals/Sprite2D")
-hit_flash_material = SubResource("ShaderMaterial_wfy7b")
+hit_flash_material = SubResource("ShaderMaterial_560y8")
 
 [node name="DeathComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("2_c0fg5")]
 health_component = NodePath("../HealthComponent")
 sprite = NodePath("../Visuals/Sprite2D")
 
 [node name="HitRandomAudioPlayerComponent" parent="." instance=ExtResource("8_xgwgi")]
-max_distance = 300.0
 streams = Array[AudioStream]([ExtResource("9_4855r"), ExtResource("10_78vc2"), ExtResource("11_38kuv"), ExtResource("12_5rv1q"), ExtResource("13_565pk")])
 
 [node name="Visuals" type="Node2D" parent="."]
