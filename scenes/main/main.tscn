@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bkcgm1psmb7cn"]
+[gd_scene load_steps=13 format=3 uid="uid://bkcgm1psmb7cn"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_4jcs4"]
 [ext_resource type="PackedScene" uid="uid://b0f5q7y5djs43" path="res://scenes/game_object/player/player.tscn" id="1_pyqns"]
@@ -11,8 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://o25rqehr0awp" path="res://scenes/manager/arena_time_manager.tscn" id="3_xucsf"]
 [ext_resource type="PackedScene" uid="uid://bkpudb5eipmcv" path="res://scenes/manager/experience_manager.tscn" id="4_ettoo"]
 [ext_resource type="PackedScene" uid="uid://degtd1p2ljgwt" path="res://scenes/manager/upgrade_manager.tscn" id="6_bmr3o"]
-[ext_resource type="PackedScene" uid="uid://cfnotgrcfd5b4" path="res://scenes/game_object/basic_enemy/basic_enemy.tscn" id="7_11ngd"]
-[ext_resource type="PackedScene" uid="uid://tgawt5iienv0" path="res://scenes/game_object/wizard_enemy/wizard_enemy.tscn" id="7_vycuy"]
 [ext_resource type="PackedScene" uid="uid://7fs2i3pkbeq3" path="res://scenes/ui/vignette.tscn" id="14_l5iet"]
 
 [node name="Main" type="Node"]
@@ -30,8 +28,6 @@ experience_manager = NodePath("../ExperienceManager")
 [node name="ArenaTimeManager" parent="." instance=ExtResource("3_xucsf")]
 
 [node name="EnemyManager" parent="." node_paths=PackedStringArray("arena_time_manager") instance=ExtResource("2_7u851")]
-basic_enemy_scene = ExtResource("7_11ngd")
-wizard_enemy_scene = ExtResource("7_vycuy")
 arena_time_manager = NodePath("../ArenaTimeManager")
 
 [node name="ExperienceManager" parent="." instance=ExtResource("4_ettoo")]
@@ -50,8 +46,9 @@ layer_0/tile_data = PackedInt32Array(196609, 0, 4, 262145, 0, 4, 262146, 0, 4, 2
 [node name="Entities" type="Node2D" parent="." groups=["entities_layer"]]
 y_sort_enabled = true
 
-[node name="Player" parent="Entities" instance=ExtResource("1_pyqns")]
+[node name="Player" parent="Entities" node_paths=PackedStringArray("arena_time_manager") instance=ExtResource("1_pyqns")]
 unique_name_in_owner = true
 position = Vector2(453, 309)
+arena_time_manager = NodePath("../../ArenaTimeManager")
 
 [node name="Foreground" type="Node2D" parent="." groups=["foreground_layer"]]
